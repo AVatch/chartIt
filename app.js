@@ -1,23 +1,42 @@
 // JavaScript source code
 $(document).ready(function(){
 
+    var outputContainerIDs = [];
+
+
     function getFile() {
         var selectedFile = document.getElementById('input').files[0];
         return selectedFile;
     }
 
-    function generateLineGraph(data) {
-        // $('.sparklineChart').sparkline(values, { type: 'line', width: '50vw' });
-
+    function generateLineGraph(containerID, data) {
+        
         var options = {
             series: {
                 lines: { show: true },
                 points: { show: true }
             },
-            hoverable: true
+            graph:{
+                clickable: true,
+                hoverable: true
+            }
         };
 
-        var plot = $('.flotChart').plot(data, options).data("plot");
+        var plot = $('#' + containerID).plot(data, options).data("plot");
+    }
+    
+    function generateContainerID(){
+        return 'output-container-' + outputContainerIDs.length.toString();
+    }
+    
+    function generateOutputContainer(){
+        var id = generateContainerID();
+        outputContainerIDs.push(id);
+        
+        $('<div/>', {
+                id: id,
+                class: 'flotChart',
+            }).appendTo('#outputContainer');
     }
 
     function chartIt() {
@@ -31,7 +50,8 @@ $(document).ready(function(){
                 complete: function (results) {
                     console.log("Finished:", results.data);
 
-                    generateLineGraph( [results.data] )
+                    generateOutputContainer()
+                    generateLineGraph( outputContainerIDs[outputContainerIDs.length-1], [results.data] )
 
                 }
             });
