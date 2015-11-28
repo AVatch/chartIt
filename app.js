@@ -31,21 +31,34 @@ $(document).ready(function(){
     }
     
     function generateContainerID(){
-        return 'output-container-' + outputContainerIDs.length.toString();
+        return outputContainerIDs.length.toString();
     }
     
     function generateOutputContainer(){
         var id = generateContainerID();
+        var timestamp = new Date();
         outputContainerIDs.push(id);
         
+        // Generate the output contianer
         $('<div/>', {
-                id: id,
-                class: 'flotChart',
+                id: 'output-container-' + id,
+                class: 'panel',
             }).appendTo('#outputContainer');
+        
+        // Generate the html around the output container
+        $('<div/>', {
+                html: '<span>[ ' + timestamp.toISOString() + ' - Output ' + outputContainerIDs[outputContainerIDs.length-1] + ' ]</span>'
+            }).appendTo('#output-container-' + outputContainerIDs[outputContainerIDs.length-1]);
+       
+        // Generate the plot container
+        $('<div/>', {
+                id: 'output-plot-' + id,
+                class: 'flotChart',
+            }).appendTo('#output-container-' + outputContainerIDs[outputContainerIDs.length-1]);
     }
 
     function chartIt() {
-        console.log('charIt stating');
+        console.log('chartIt stating');
 
         var timeSeries = getFile();
         if (timeSeries) {
@@ -57,7 +70,7 @@ $(document).ready(function(){
 
                     // plot it
                     generateOutputContainer()
-                    generateLineGraph( outputContainerIDs[outputContainerIDs.length-1], [results.data] )
+                    generateLineGraph( 'output-plot-' + outputContainerIDs[outputContainerIDs.length-1], [results.data] )
                     clearFile();
 
                 }
