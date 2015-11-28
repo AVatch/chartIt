@@ -22,7 +22,8 @@ $(document).ready(function(){
             grid: {
 				hoverable: true,
 				clickable: true
-			}
+			},
+            colors: ["#296ad4"]
         };
 
         var plot = $('#' + containerID).plot(data, options).data("plot");
@@ -30,9 +31,9 @@ $(document).ready(function(){
         $("<div id='tooltip'></div>").css({
 			position: "absolute",
 			display: "none",
-			border: "1px solid #fdd",
+			border: "1px solid #f2f2f2",
 			padding: "2px",
-			"background-color": "#fee",
+			"background-color": "#f2f2f2",
 			opacity: 0.80
 		}).appendTo("body");
 
@@ -51,12 +52,7 @@ $(document).ready(function(){
 			
 		});
 
-		$('#' + containerID).bind("plotclick", function (event, pos, item) {
-			if (item) {
-				plot.highlight(item.series, item.datapoint);
-			}
-		});
-        
+		
         return plot;
     }
     
