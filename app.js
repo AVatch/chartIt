@@ -8,6 +8,9 @@ $(document).ready(function(){
         var selectedFile = document.getElementById('input').files[0];
         return selectedFile;
     }
+    function clearFile(){
+        document.getElementById('inputFileForm').reset();
+    }
 
     function generateLineGraph(containerID, data) {
         
@@ -23,6 +26,8 @@ $(document).ready(function(){
         };
 
         var plot = $('#' + containerID).plot(data, options).data("plot");
+        
+        return plot;
     }
     
     function generateContainerID(){
@@ -50,13 +55,13 @@ $(document).ready(function(){
                 complete: function (results) {
                     console.log("Finished:", results.data);
 
+                    // plot it
                     generateOutputContainer()
                     generateLineGraph( outputContainerIDs[outputContainerIDs.length-1], [results.data] )
+                    clearFile();
 
                 }
             });
-
-            // plot it
 
 
         } else {
