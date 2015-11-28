@@ -16,6 +16,7 @@
     "jquery": "~2.1.4",
     "jquery.sparkline": "~2.1.2",
     "papaparse": "~4.1.2",
-    "Flot": "flotcharts#~0.8.1"
+    "Flot": "flotcharts#~0.8.1",
+    "bootstrap": "~3.3.6"
   }
 }

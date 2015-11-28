@@ -3,14 +3,19 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>chartIt</title>
 
     <!-- Styles -->
-    <link href="style.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="style.css" />
 
     <!-- Scripts -->
     <!-- Dependencies -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/jquery.sparkline/dist/jquery.sparkline.js"></script>
     <script src="bower_components/Flot/jquery.flot.js"></script>
     <script src="bower_components/PapaParse/papaparse.js"></script>
@@ -19,21 +24,66 @@
 
 </head>
 <body>
-    <h1>ChartIt</h1>
-    <p>A simple drag and drop solution to visualize time series data. Just drag and drop CSV files formatted in (x,y) where x is the first column adn y is the second column.</p>
-    <hr />
-
-    <h3>Step 1. Upload a time series</h3>
-    <input type="file" id="input">
-
-    <h3>Step 2. ChartIt! </h3>
     
-    <button id="chartIt">Start</button>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">ChartIt</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
 
-    <hr />
 
-    <h3>Output</h3>
-    <div class="flotChart" style="width:600px; height:600px;"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h1>ChartIt</h1>
+                        <p>A simple drag and drop solution to visualize time series data. Just drag and drop CSV files formatted in (x,y) where x is the first column adn y is the second column.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Step 1. Upload a time series</h3>
+                <input type="file" id="input">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Step 2. ChartIt! </h3>
+                <button id="chartIt">Start</button>
+
+            </div>        
+        </div>
+        
+
+                <hr />
+
+        <h3>Output</h3>
+        <div class="flotChart" style="width:600px; height:600px;"></div>
+
+    </div>
 
 </body>
 </html>

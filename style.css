@@ -1,7 +1,6 @@
-﻿body
-{
+﻿body{
+    padding-top: 70px;
 }
-
 .flotChart{
     height: 300px;
     width: 300px;
