@@ -19,19 +19,49 @@ $(document).ready(function(){
                 lines: { show: true },
                 points: { show: true }
             },
-            graph:{
-                clickable: true,
-                hoverable: true
-            }
+            grid: {
+				hoverable: true,
+				clickable: true
+			}
         };
 
         var plot = $('#' + containerID).plot(data, options).data("plot");
+        
+        $("<div id='tooltip'></div>").css({
+			position: "absolute",
+			display: "none",
+			border: "1px solid #fdd",
+			padding: "2px",
+			"background-color": "#fee",
+			opacity: 0.80
+		}).appendTo("body");
+
+		$('#' + containerID).bind("plothover", function (event, pos, item) {
+
+            if (item) {
+                var x = item.datapoint[0].toFixed(2),
+                    y = item.datapoint[1].toFixed(2);
+    
+                $("#tooltip").html('(' + x + ", " + y + ")")
+                    .css({top: item.pageY+5, left: item.pageX+5})
+                    .fadeIn(200);
+            } else {
+                $("#tooltip").hide();
+            }
+			
+		});
+
+		$('#' + containerID).bind("plotclick", function (event, pos, item) {
+			if (item) {
+				plot.highlight(item.series, item.datapoint);
+			}
+		});
         
         return plot;
     }
     
     function generateContainerID(){
-        return outputContainerIDs.length.toString();
+        return (outputContainerIDs.length + 1).toString();
     }
     
     function generateOutputContainer(){
@@ -42,7 +72,10 @@ $(document).ready(function(){
         // Generate the output contianer
         $('<div/>', {
                 id: 'output-container-' + id,
-                class: 'panel',
+                class: 'panel panel-default',
+                css: {
+                    padding: '15px'
+                },
             }).appendTo('#outputContainer');
         
         // Generate the html around the output container
