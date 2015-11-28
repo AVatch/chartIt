@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>chartIt</title>
+
+    <!-- Styles -->
+    <link href="style.css" />
+
+    <!-- Scripts -->
+    <!-- Dependencies -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery.sparkline/dist/jquery.sparkline.js"></script>
+    <script src="bower_components/Flot/jquery.flot.js"></script>
+    <script src="bower_components/PapaParse/papaparse.js"></script>
+    <!-- App -->
+    <script src="app.js"></script>
+
+</head>
+<body>
+    <h1>ChartIt</h1>
+    <p>A simple drag and drop solution to visualize time series data. Just drag and drop CSV files formatted in (x,y) where x is the first column adn y is the second column.</p>
+    <hr />
+
+    <h3>Step 1. Upload a time series</h3>
+    <input type="file" id="input">
+
+    <h3>Step 2. ChartIt! </h3>
+    
+    <button id="chartIt">Start</button>
+
+    <hr />
+
+    <h3>Output</h3>
+    <div class="flotChart" style="width:600px; height:600px;"></div>
+
+</body>
+</html>
